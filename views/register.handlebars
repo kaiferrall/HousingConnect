@@ -1,0 +1,130 @@
+<body>
+  <div class="nav">
+  <nav>
+    <ul>
+      <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
+      <li><span class="glyphicon glyphicon-user"</span><a href="https://github.com/">My Profile</a></li>
+      <li><span class="glyphicon glyphicon-search"</span><a href="https://github.com/">Find</a></li>
+      <!-- Add login and logout logic for signup, login and logout -->
+      <li><a id="access" href="http://localhost:5000/login">Login</a>
+        <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+    </ul>
+  </nav>
+  </div>
+
+  <div class="wrapper">
+      <form class="form-signin" method="post" action="http://localhost:5000/api/users/register">
+        <h2 class="form-signin-heading">Welcome to QHC, Please Register Below</h2>
+        <input type="text" class="form-control" name="name" placeholder="Your Name"  autofocus="" />
+        <input type="text" class="form-control" name="email" placeholder="Email Address"  autofocus="" />
+        <input type="password" class="form-control" name="password" placeholder="Password" />
+        <input type="password" class="form-control" name="password2" placeholder="Confirm Password" />
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      </form>
+    </div>
+
+
+  <footer>
+  <p>Copyright 2018</p>
+  </footer>
+
+
+
+  <style media="screen">
+  .nav {
+background-color: #202060;
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+margin: 0 200px 0 200px;
+}
+nav ul {
+list-style-type: none;
+}
+nav ul li {
+float: left;
+padding: 10px 40px 20px 0;
+margin-left: 10px;
+font-size: 30px;
+color: white;
+}
+nav ul li a {
+color: white;
+padding-left: 15px;
+font-family: arial;
+}
+nav ul span {
+padding-left: 5px;
+}
+#access {
+margin-left: 120px;
+padding-right: 0;
+padding-left: 0;
+font-size: 20px;
+float: left;
+margin-top: 10px;
+}
+footer {
+margin-top: 50%;
+text-align: center;
+}
+
+@import "bourbon";
+
+body {
+background: white;
+}
+
+.wrapper {
+margin-top: 80px;
+margin-bottom: 80px;
+}
+.wrapper button {
+background-color: #202060;
+}
+
+.form-signin {
+max-width: 380px;
+padding: 15px 35px 45px;
+margin: 0 auto;
+background-color: #fff;
+border: 1px solid rgba(0, 0, 0, 0.1);
+box-shadow: 4px 8px 8px 4px rgba(0, 0, 0, 0.2);
+.form-signin-heading,
+.checkbox {
+margin-bottom: 30px;
+}
+.form-signin:hover {
+  box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.2);
+}
+.checkbox {
+font-weight: normal;
+}
+
+.form-control {
+position: relative;
+font-size: 16px;
+height: auto;
+padding: 10px;
+@include box-sizing(border-box);
+
+&:focus {
+  z-index: 2;
+}
+}
+
+input[type="text"] {
+margin-bottom: -1px;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+margin-bottom: 20px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+}
+</body>
