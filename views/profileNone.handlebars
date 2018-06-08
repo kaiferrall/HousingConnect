@@ -1,0 +1,79 @@
+<div class="nav">
+<nav>
+  <ul>
+    <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
+    <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+    <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/find">Find</a></li>
+    <!-- Add login and logout logic for signup, login and logout -->
+    {{#if login}}
+      <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+      {{else}}
+      <li><a id="access" href="http://localhost:5000/login">Login</a>
+        <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+      {{/if}}
+  </ul>
+</nav>
+</div>
+
+<main>
+  <header>
+    <h1>Click below to setup your profile</h1>
+  </header>
+  <form class="form" action="/api/profile" method="get">
+      <button type="submit" class="btn btn-info" name="button">Create Profile</button>
+  </form>
+</main>
+
+<footer>
+<p>Copyright 2018</p>
+</footer>
+
+<style media="screen">
+main{
+  margin-left: 200px;
+  margin-top: 100px;
+}
+.form button{
+  width: 250px;
+  height: 70px;
+  font-size: 35px;
+  margin-top: 40px;
+}
+.nav {
+  background-color: #202060;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin: 0 200px 0 200px;
+}
+nav ul {
+  list-style-type: none;
+}
+nav ul li {
+  float: left;
+  padding: 10px 40px 20px 0;
+  margin-left: 10px;
+  font-size: 30px;
+  color: white;
+}
+nav ul li a {
+  color: white;
+  padding-left: 15px;
+  font-family: arial;
+}
+nav ul span {
+  padding-left: 5px;
+}
+#access {
+  margin-left: 120px;
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 20px;
+  float: left;
+  margin-top: 10px;
+}
+footer{
+  margin-top: 200px;
+  text-align: center;
+}
+
+</style>
