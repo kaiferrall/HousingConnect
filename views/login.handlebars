@@ -5,8 +5,8 @@
     <nav>
       <ul>
         <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
-        <li><span class="glyphicon glyphicon-user"</span><a href="https://github.com/">My Profile</a></li>
-        <li><span class="glyphicon glyphicon-search"</span><a href="https://github.com/">Find</a></li>
+        <li><span class="glyphicon glyphicon-user"</span><a href="https://localhost:5000/profile">My Profile</a></li>
+        <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/find">Find</a></li>
         <!-- Add login and logout logic for signup, login and logout -->
         <li><a id="access" href="http://localhost:5000/login">Login</a>
           <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
@@ -16,7 +16,7 @@
 
     <div class="wrapper">
         <form class="form-signin" method="post" action="http://localhost:5000/api/users/login">
-          <h2 class="form-signin-heading">Please login</h2>
+          <h2 class="form-signin-heading"><i class="fas fa-lock"></i>     Please login</h2>
           <input type="text" class="form-control" name="email" placeholder="Email Address"  autofocus="" />
           <input type="password" class="form-control" name="password" placeholder="Password" />
           <label class="checkbox">
@@ -25,13 +25,25 @@
           <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         </form>
       </div>
-
-
+      {{#if errors}}
+<div class="errors">
+  {{#if errors.email}}
+<h4 class="errors">*{{errors.email}}</h4>
+{{/if}}
+{{#if errors.password}}
+<h4 class="errors">*{{errors.password}}</h4>
+{{/if}}
+</div>
+{{/if}}
     <footer>
     <p>Copyright 2018</p>
     </footer>
 
     <style media="screen">
+.errors{
+    color: red;
+    text-align: center;
+}
     .nav {
 background-color: #202060;
 border-bottom-left-radius: 6px;
@@ -65,7 +77,7 @@ float: left;
 margin-top: 10px;
 }
 footer {
-margin-top: 50%;
+margin-top: 200px;
 text-align: center;
 }
 

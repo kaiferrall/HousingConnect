@@ -2,11 +2,15 @@
 <nav>
   <ul>
     <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
-    <li><span class="glyphicon glyphicon-user"</span><a href="https://github.com/">My Profile</a></li>
-    <li><span class="glyphicon glyphicon-search"</span><a href="https://github.com/">Find</a></li>
+    <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+    <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/find">Find</a></li>
     <!-- Add login and logout logic for signup, login and logout -->
-    <li><a id="access" href="http://localhost:5000/login">Login</a>
-      <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+    {{#if login}}
+      <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+      {{else}}
+      <li><a id="access" href="http://localhost:5000/login">Login</a>
+        <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+      {{/if}}
   </ul>
 </nav>
 </div>
@@ -39,6 +43,16 @@
 <footer>
 <p>Copyright 2018</p>
 </footer>
+
+{{#if auth.token}}
+<script type="text/javascript" async>
+//const token = {{auth.token}};
+//localStorage.setItem("token", token)
+console.log({{auth.token}});
+</script>
+{{/if}}
+
+
 
 <style media="screen">
 .nav {

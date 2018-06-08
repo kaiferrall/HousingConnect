@@ -3,8 +3,8 @@
   <nav>
     <ul>
       <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
-      <li><span class="glyphicon glyphicon-user"</span><a href="https://github.com/">My Profile</a></li>
-      <li><span class="glyphicon glyphicon-search"</span><a href="https://github.com/">Find</a></li>
+      <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+      <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/find">Find</a></li>
       <!-- Add login and logout logic for signup, login and logout -->
       <li><a id="access" href="http://localhost:5000/login">Login</a>
         <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
@@ -26,6 +26,27 @@
       </form>
     </div>
 
+    {{#if errors}}
+  <div class="errors">
+    {{#if errors.name}}
+    <h4 class="errors">*{{errors.name}}</h4>
+    {{/if}}
+  {{#if errors.email}}
+  <h4 class="errors">*{{errors.email}}</h4>
+  {{/if}}
+  {{#if errors.password}}
+  <h4 class="errors">*{{errors.password}}</h4>
+  {{/if}}
+  {{#if errors.password2}}
+  <h4 class="errors">*{{errors.password2}}</h4>
+  {{/if}}
+  {{#if errors.passwordConfirm}}
+  <h4 class="errors">*{{errors.passwordConfirm}}</h4>
+  {{/if}}
+</div>
+{{/if}}
+
+
 
   <footer>
   <p>Copyright 2018</p>
@@ -34,6 +55,10 @@
 
 
   <style media="screen">
+  .errors{
+      color: red;
+      text-align: center;
+  }
   .nav {
 background-color: #202060;
 border-bottom-left-radius: 6px;
@@ -67,7 +92,7 @@ float: left;
 margin-top: 10px;
 }
 footer {
-margin-top: 50%;
+margin-top: 200px;
 text-align: center;
 }
 
@@ -127,4 +152,6 @@ border-top-left-radius: 0;
 border-top-right-radius: 0;
 }
 }
-</body>
+    </style>
+  </body>
+</html>
