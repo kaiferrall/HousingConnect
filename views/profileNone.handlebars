@@ -3,7 +3,7 @@
   <ul>
     <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
     <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
-    <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/find">Find</a></li>
+    <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
     <!-- Add login and logout logic for signup, login and logout -->
     {{#if login}}
       <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
@@ -17,9 +17,9 @@
 
 <main>
   <header>
-    <h1>Click below to setup your profile</h1>
+    <h1>Hi {{user.name}}, click below to setup your profile</h1>
   </header>
-  <form class="form" action="/api/profile" method="get">
+  <form class="form" action="/api/profile/form" method="get">
       <button type="submit" class="btn btn-info" name="button">Create Profile</button>
   </form>
 </main>

@@ -1,0 +1,3 @@
+Save token to local storage.
+Each protected route uses a function to take the token if it exits and set it in
+the Authorization header.

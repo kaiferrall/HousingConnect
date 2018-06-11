@@ -1,0 +1,128 @@
+<div class="nav">
+<nav>
+  <ul>
+    <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
+    <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+    <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+    <!-- Add login and logout logic for signup, login and logout -->
+    {{#if login}}
+      <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+      {{else}}
+      <li><a id="access" href="http://localhost:5000/login">Login</a>
+        <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+      {{/if}}
+  </ul>
+</nav>
+</div>
+
+<div class="jumbotron">
+  <h1 class="handle">{{profile.handle}}</h1>
+  {{#if profile.socials.twitter}}
+    <h3 class="twitter"><i id="twitter" class="fab fa-twitter fa-lg"></i>    {{profile.socials.twitter}}</h3>
+    {{/if}}
+    {{#if profile.socials.facebook}}
+    <h3 class="facebook"><i id="facebook" class="fab fa-facebook-f fa-lg"></i>    {{profile.socials.facebook}}</h3>
+    {{/if}}
+    {{#if profile.socials.instagram}}
+  <h3 class="instagram"><i id="instagram" class="fab fa-instagram fa-lg"></i>    {{profile.socials.instagram}}</h3>
+  {{/if}}
+  {{#if profile.bio}}
+  <h2 class="bio">Bio:</h2>
+  <p>{{profile.bio}}</p>
+  {{/if}}
+  {{#if profile.program}}
+  <p>I am studying, {{profile.program}}</p>
+  {{/if}}
+  {{#if profile.year}}
+  <p>Im in year: {{profile.year}}</p>
+  {{/if}}
+  <form class="form" action="/api/profile/form" method="get">
+      <button type="submit" class="btn btn-success btn-lg" name="button">Edit Profile</button>
+  </form>
+</div>
+
+<footer>
+<p>Copyright 2018</p>
+</footer>
+
+<style media="screen">
+.form{
+  padding-top: 100px;
+}
+.bio{
+  text-decoration: underline;
+  padding-top: 20px;
+}
+#twitter{
+  color: #00aced;
+}
+#instagram{
+  color: #cd486b;
+}
+#facebook{
+  color: 	#3b5998;
+}
+.handle{
+  text-align: center;
+  margin-top: -45px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+.jumbotron{
+  margin-left: 500px;
+  text-align: center;
+  margin-right: 500px;
+  margin-top: 100px;
+  height: 600px;
+  background: linear-gradient(white, #e6e6ff);
+  box-shadow: 2px 8px 8px 4px rgba(0, 0, 0, 0.2);
+}
+.nav {
+  background-color: #202060;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin: 0 200px 0 200px;
+}
+nav ul {
+  list-style-type: none;
+}
+nav ul li {
+  float: left;
+  padding: 10px 40px 20px 0;
+  margin-left: 10px;
+  font-size: 30px;
+  color: white;
+}
+nav ul li a {
+  color: white;
+  padding-left: 15px;
+  font-family: arial;
+}
+nav ul span {
+  padding-left: 5px;
+}
+#access {
+  margin-left: 120px;
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 20px;
+  float: left;
+  margin-top: 10px;
+}
+main {
+  padding-top: 50px;
+  margin: 0 200px 0 200px;
+}
+.jumbotron {
+  border-radius: 6px;
+}
+.header {
+  margin: 50px 200px 0 200px;
+  border-bottom: 1px solid black;
+}
+footer {
+  margin-top: 20%;
+  text-align: center;
+}
+
+</style>

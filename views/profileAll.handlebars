@@ -1,0 +1,169 @@
+<body>
+
+  <div class="nav">
+  <nav>
+    <ul>
+      <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
+      <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+      <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+      <!-- Add login and logout logic for signup, login and logout -->
+      {{#if login}}
+        <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+        {{else}}
+        <li><a id="access" href="http://localhost:5000/login">Login</a>
+          <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+        {{/if}}
+    </ul>
+  </nav>
+  </div>
+
+  <div class="wrap">
+     <div class="search">
+       <form action="http://localhost:5000/api/profile/search" method="post">
+        <input type="text" class="searchTerm" name="search" placeholder="Find Someone...">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+       </button>
+     </form>
+     </div>
+  </div>
+
+  <div class="filter">
+    <label class="program"><input type="checkbox" label="By Program" name="check" value="program">By Program</label>
+    <label class="year"><input type="checkbox" label="By Program" name="check" value="year">By Year</label>
+      <label class="handle"><input type="checkbox" label="By Program" name="check" value="handle">By Handle</label>
+  </div>
+<h4 class="note">Profiles are displayed in alphabetical order</h4>
+
+{{#each profiles}}
+<div class="userCard">
+<h1>{{this.handle}}</h1>
+<p>{{this.bio}}</p>
+<h4>{{this.program}}</h4>
+<h4>In year {{this.year}}</h4>
+<button id="btn" class="btn btn-success" type="button" name="button">View {{this.handle}}'s profile</button>
+</div>
+{{/each}}
+
+  <footer>
+  <p>Copyright 2018</p>
+  </footer>
+
+  <style media="screen">
+  .userCard:hover {
+    box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.2);
+  }
+  .note{
+    text-align: center;
+    margin-top: 30px;
+  }
+  .filter{
+    margin-left: 650px;
+    margin-top: 150px;
+  }
+  .year{
+    padding-left: 40px;
+  }
+  .handle{
+    padding-left: 40px;
+  }
+  #btn{
+    margin-top: 15px;
+  }
+  .userCard{
+    text-align: center;
+    margin-top: 50px;
+    width: 400px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 8px 8px 4px rgba(0, 0, 0, 0.2);
+  }
+  .nav {
+background-color: #202060;
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+margin: 0 200px 0 200px;
+}
+nav ul {
+list-style-type: none;
+}
+nav ul li {
+float: left;
+padding: 10px 40px 20px 0;
+margin-left: 10px;
+font-size: 30px;
+color: white;
+}
+nav ul li a {
+color: white;
+padding-left: 15px;
+font-family: arial;
+}
+nav ul span {
+padding-left: 5px;
+}
+#access {
+margin-left: 120px;
+padding-right: 0;
+padding-left: 0;
+font-size: 20px;
+float: left;
+margin-top: 10px;
+}
+footer {
+margin-top: 200px;
+text-align: center;
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  font-size: 20px;
+  border: 3px solid #202060;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  color: #202060;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  position: absolute;
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #202060;
+  background: #202060;;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  </style>
+</body>
+</html>

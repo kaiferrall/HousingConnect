@@ -7,6 +7,10 @@ const path = require("path");
 const hbs = require("express-handlebars");
 const keys = require("./config/keys");
 
+//Loading in models
+const User = require("./models/User");
+const Profile = require("./models/Profile");
+
 //Authentication packages
 const session = require("express-session");
 const passport = require("passport");
@@ -78,8 +82,18 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
+//Profile display logic
 app.get("/profile", authCheck(), (req, res) => {
-  res.render("profileNone");
+  const user_id = req.user;
+  console.log(user_id);
+  Profile.findOne({ user: user_id }).then(profile => {
+    if (profile) {
+      console.log(profile);
+      res.render("profileExists", { profile: profile });
+    } else {
+      res.redirect("/api/profile");
+    }
+  });
 });
 app.get("/find", (req, res) => {
   res.render("find");
@@ -93,21 +107,12 @@ app.use("/api/profile", profile);
 //authCheck function
 function authCheck() {
   return (req, res, next) => {
-    function authCheck() {
-      return (req, res, next) => {
-        console.log(
-          `req.session.passport.user: ${JSON.stringify(req.session.passport)}`
-        );
-
-        if (req.isAuthenticated()) return next();
-
-        res.redirect("/login");
-      };
+    if (req.isAuthenticated()) {
+      return next();
+    } else if (!req.isAuthenticated()) {
+      res.redirect("/login");
     }
-
-    if (req.isAuthenticated()) return next();
-
-    res.redirect("/login");
+    console.log(req.isAuthenticated());
   };
 }
 

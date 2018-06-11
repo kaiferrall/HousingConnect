@@ -16,25 +16,31 @@ router.get("/test", (req, res) => {
 });
 
 // @route  GET api/profile/create
-// @desc   Test the profile route
+// @desc   Renders the no profile route
 // @access Private
 router.get("/", (req, res) => {
   const user_id = req.user;
   console.log(user_id);
   User.findById(user_id).then(user => {
     if (user) {
-      Profile.findOne({ user: user_id }).then(profile => {
-        console.log(user.name);
-        console.log(profile);
-        res.render("profileForm", { user: user, profile: profile });
-      });
+      res.render("profileNone", { user: user });
     } else {
-      res.status(404).json({ User: "No user found" });
+      console.log("Breach");
     }
   });
 });
 
-// @route  POST api/profile/test
+// @route  GET api/profile/create
+// @desc   Renders the profile form route
+// @access Private
+router.get("/form", (req, res) => {
+  const user_id = req.user;
+  Profile.findOne({ user: user_id }).then(profile =>
+    res.render("profileForm", { profile: profile })
+  );
+});
+
+// @route  POST api/profile
 // @desc   Create a profile for a user
 // @access Private
 router.post("/", (req, res) => {
@@ -63,7 +69,7 @@ router.post("/", (req, res) => {
         { user: req.user },
         { $set: profileFields },
         { new: true }
-      ).then(profile => res.json(profile));
+      ).then(profile => res.redirect("/profile"));
     } else {
       //Create the new profile
 
@@ -75,10 +81,33 @@ router.post("/", (req, res) => {
         }
 
         //Save the profiles
-        new Profile(profileFields).save().then(profile => res.json(profile));
+        new Profile(profileFields)
+          .save()
+          .then(profile => res.redirect("/profile"));
       });
     }
   });
+});
+
+// @route  GET api/profile/all
+// @desc   Display all profiles
+// @access Private
+router.get("/all", (req, res) => {
+  Profile.find({}, null, { sort: { handle: 1 } }).then(profiles => {
+    res.render("profileAll", { profiles: profiles });
+  });
+});
+
+// @route  GET api/profile/search
+// @desc   Searching for a user
+// @access Private
+router.post("/search", (req, res) => {
+  const search = req.body.search;
+  if (search) {
+    Profile.find({ handle: search }).then(profile => {
+      res.render("profileAll", { profiles: profile });
+    });
+  }
 });
 
 module.exports = router;
