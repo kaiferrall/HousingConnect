@@ -7,42 +7,36 @@
       <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
       <li><span class="glyphicon glyphicon-share-alt"</span><a href="http://localhost:5000/api/posts/feed">Feed</a></li>
       <!-- Add login and logout logic for signup, login and logout -->
-      <li><a id="access" href="http://localhost:5000/login">Login</a>
-        <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+      {{#if login}}
+        <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+        {{else}}
+        <li><a id="access" href="http://localhost:5000/login">Login</a>
+          <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+        {{/if}}
     </ul>
   </nav>
   </div>
 
   <div class="wrapper">
-      <form class="form-signin" method="post" action="http://localhost:5000/api/users/register">
-        <h2 class="form-signin-heading">Welcome to QHC, Please Register Below</h2>
-        <input type="text" class="form-control" name="name" placeholder="Your Name"  autofocus="" />
-        <input type="text" class="form-control" name="email" placeholder="Email Address"  autofocus="" />
-        <input type="password" class="form-control" name="password" placeholder="Password" />
-        <input type="password" class="form-control" name="password2" placeholder="Confirm Password" />
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+      <form class="form-signin" method="post" action="http://localhost:5000/api/posts/create">
+        <h2 class="form-signin-heading">Want to say something?</h2>
+        <input type="text" class="form-control" name="title" placeholder="Give your post a title"  autofocus="" />
+        <textarea class="form-control" rows="5" name="text" placeholder="What do you want to say?" ></textarea>
+        <input type="text" class="form-control" name="type" placeholder="Tell people what kind of post this is"  autofocus="" />
+        <button class="btn btn-lg btn-success btn-block" type="submit">Post</button>
       </form>
     </div>
 
     {{#if errors}}
   <div class="errors">
-    {{#if errors.name}}
-    <h4 class="errors">*{{errors.name}}</h4>
+    {{#if errors.title}}
+      <h4 class="errors">*{{errors.title}}</h4>
     {{/if}}
-  {{#if errors.email}}
-  <h4 class="errors">*{{errors.email}}</h4>
-  {{/if}}
-  {{#if errors.password}}
-  <h4 class="errors">*{{errors.password}}</h4>
-  {{/if}}
-  {{#if errors.password2}}
-  <h4 class="errors">*{{errors.password2}}</h4>
-  {{/if}}
-  {{#if errors.passwordConfirm}}
-  <h4 class="errors">*{{errors.passwordConfirm}}</h4>
+    {{#if errors.text}}
+    <h4 class="errors">*{{errors.text}}</h4>
+    {{/if}}
+  {{#if errors.type}}
+    <h4 class="errors">*{{errors.type}}</h4>
   {{/if}}
 </div>
 {{/if}}
@@ -108,11 +102,15 @@ margin-top: 80px;
 margin-bottom: 80px;
 }
 .wrapper button {
-background-color: #202060;
+background-color: green;
+margin-top: 25px;
+width: 100px;
+margin-left: auto;
+margin-right: auto;
 }
 
 .form-signin {
-max-width: 380px;
+max-width: 650px;
 padding: 15px 35px 45px;
 margin: 0 auto;
 background-color: #fff;

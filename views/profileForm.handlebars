@@ -4,6 +4,7 @@
     <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
     <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
     <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+    <li><span class="glyphicon glyphicon-share-alt"</span><a href="http://localhost:5000/api/posts/feed">Feed</a></li>
     <!-- Add login and logout logic for signup, login and logout -->
     {{#if login}}
       <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
@@ -17,7 +18,7 @@
 
 <div class="wrapper">
     <form class="form-signin" method="post" action="http://localhost:5000/api/profile">
-      <h2 class="form-signin-heading">Hey, {{user.name}} let people know about you through your profile.</h2>
+      <h2 class="form-signin-heading">Hey, {{profile.handle}} let people know about you through your profile.</h2>
       <input type="text" class="form-control" name="handle" placeholder="Handle" {{#if profile.handle}}value={{profile.handle}}{{/if}} autofocus="" />
       <input type="text" class="form-control" name="program" placeholder="What program are you in?" {{#if profile.program}}value={{profile.program}}{{/if}} autofocus="" />
       <input type="text" class="form-control" name="year" placeholder="What year are you in?" {{#if profile.year}}value={{profile.year}}{{/if}} />

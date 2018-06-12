@@ -4,6 +4,7 @@
     <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000/">Home</a></li>
     <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
     <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+    <li><span class="glyphicon glyphicon-share-alt"</span><a href="http://localhost:5000/api/posts/feed">Feed</a></li>
     <!-- Add login and logout logic for signup, login and logout -->
     {{#if login}}
       <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
@@ -36,6 +37,9 @@
   {{#if profile.year}}
   <p>Im in year: {{profile.year}}</p>
   {{/if}}
+  <form class="form2" action="/api/profile/form" method="get">
+      <button type="submit" class="btn btn-primary btn-lg" name="button">My Groups</button>
+  </form>
   <form class="form" action="/api/profile/form" method="get">
       <button type="submit" class="btn btn-success btn-lg" name="button">Edit Profile</button>
   </form>
@@ -46,8 +50,11 @@
 </footer>
 
 <style media="screen">
+.form2{
+  padding-top: 115px;
+}
 .form{
-  padding-top: 100px;
+  padding-top: 30px;
 }
 .bio{
   text-decoration: underline;

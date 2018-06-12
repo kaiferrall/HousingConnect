@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/login", (req, res) => {
+app.get("/login", authControl(), (req, res) => {
   res.render("login");
 });
 app.get("/register", (req, res) => {
@@ -102,7 +102,7 @@ app.get("/find", (req, res) => {
 //Use Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
-//app.use("/api/posts", posts);
+app.use("/api/posts", posts);
 
 //authCheck function
 function authCheck() {
@@ -111,6 +111,18 @@ function authCheck() {
       return next();
     } else if (!req.isAuthenticated()) {
       res.redirect("/login");
+    }
+    console.log(req.isAuthenticated());
+  };
+}
+
+//authCheck function
+function authControl() {
+  return (req, res, next) => {
+    if (req.isAuthenticated()) {
+      res.status(404).send("Unavailable");
+    } else if (!req.isAuthenticated()) {
+      return next();
     }
     console.log(req.isAuthenticated());
   };

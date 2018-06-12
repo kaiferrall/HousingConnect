@@ -1,0 +1,130 @@
+<body>
+
+  <div class="nav">
+  <nav>
+    <ul>
+      <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
+      <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+      <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+      <li><span class="glyphicon glyphicon-share-alt"</span><a href="http://localhost:5000/api/posts/feed">Feed</a></li>
+      <!-- Add login and logout logic for signup, login and logout -->
+      {{#if login}}
+        <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+        {{else}}
+        <li><a id="access" href="http://localhost:5000/login">Login</a>
+          <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+        {{/if}}
+    </ul>
+  </nav>
+  </div>
+  <div class="post">
+<form action="http://localhost:5000/api/posts/form" method="get">
+  <button type="submit" class="btn btn-success"name="button">Create a post</button>
+</form>
+</div>
+
+  {{#each posts}}
+<div class="postCard">
+<h3 id="handle">{{this.handle}}</h3>
+<h1 id="title">{{this.title}}</h1>
+<h5 id="type">{{this.type}}</h5>
+<h4 id="text">{{this.text}}</h4>
+<h6 id="date">{{this.date}}</h6>
+<form class="upvote" action="/api/posts/like/{{this._id}}" method="post">
+  {{#if this.upVotesCount }}<h4 class="likes">{{this.upVotesCount}}</h4>{{/if}}&nbsp&nbsp<button class="like" type="sumbit" name="button"><i style="color: white;"class="fas fa-chevron-up fa-lg"></i></button>
+</form>
+</div>
+  {{/each}}
+
+  <style media="screen">
+  .likes {
+    display: inline;
+  }
+  .like {
+    background-color:  #809fff;
+    border: 0;
+    border-radius: 4px;
+    float: right;
+  }
+  .post{
+    margin-top: 90px;
+    width: 200px;
+    margin-left: 415px;
+  }
+  .upvote {
+    float: right;
+    margin-right: 15px;
+  }
+
+  #title, #type{
+    text-align: center;
+    margin-top: -10px;
+  }
+  #date {
+    text-align: center;
+    margin-top: 35px;
+  }
+  #text {
+    text-align: center;
+  }
+  #handle {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 0;
+    width: 20%;
+    text-align: center;
+  }
+  .postCard:hover {
+    box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.2);
+  }
+  .postCard {
+    width: 850px;
+    height: 200px;
+    box-shadow: 2px 8px 8px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+    margin-top: 40px;
+  }
+
+  .nav {
+background-color: #202060;
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+margin: 0 200px 0 200px;
+}
+nav ul {
+list-style-type: none;
+}
+nav ul li {
+float: left;
+padding: 10px 40px 20px 0;
+margin-left: 10px;
+font-size: 30px;
+color: white;
+}
+nav ul li a {
+color: white;
+padding-left: 15px;
+font-family: arial;
+}
+nav ul span {
+padding-left: 5px;
+}
+#access {
+margin-left: 120px;
+padding-right: 0;
+padding-left: 0;
+font-size: 20px;
+float: left;
+margin-top: 10px;
+}
+footer {
+margin-top: 200px;
+text-align: center;
+}
+  </style>
+</body>
+</html>
