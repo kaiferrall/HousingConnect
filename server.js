@@ -26,7 +26,7 @@ mongoose
 const users = require("./api/routes/users");
 const profile = require("./api/routes/profile");
 const posts = require("./api/routes/posts");
-
+const groups = require("./api/routes/groups");
 //Initialize app
 const app = express();
 
@@ -103,6 +103,7 @@ app.get("/find", (req, res) => {
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
+app.use("/api/groups", groups);
 
 //authCheck function
 function authCheck() {

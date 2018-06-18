@@ -4,11 +4,17 @@ const Schema = mongoose.Schema;
 // Creating Group Schema
 
 const GroupSchema = new Schema({
-  users: [User],
+  users: [{ type: Schema.Types.Mixed, ref: "users" }],
+  name: {
+    type: String
+  },
+  size: {
+    type: Number
+  },
   status: {
     type: String
   }
   //Add more elements for a group
 });
 
-module.exports = GroupSchema = mongoose.model("groups", GroupSchema);
+module.exports = Group = mongoose.model("groups", GroupSchema);

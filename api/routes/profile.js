@@ -94,6 +94,7 @@ router.post("/", (req, res) => {
 // @access Private
 router.get("/all", (req, res) => {
   Profile.find({}, null, { sort: { handle: 1 } }).then(profiles => {
+    console.log(profiles);
     res.render("profileAll", { profiles: profiles });
   });
 });
@@ -105,7 +106,7 @@ router.post("/search", (req, res) => {
   const search = req.body.search;
   if (search) {
     Profile.find({ handle: search }).then(profile => {
-      res.render("profileAll", { profiles: profile });
+      res.render("search", { profiles: profile });
     });
   }
 });

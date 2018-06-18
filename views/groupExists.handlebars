@@ -1,0 +1,106 @@
+<body>
+
+  <div class="nav">
+  <nav>
+    <ul>
+      <li><span class="glyphicon glyphicon-home"</span><a href="http://localhost:5000">Home</a></li>
+      <li><span class="glyphicon glyphicon-user"</span><a href="http://localhost:5000/profile">My Profile</a></li>
+      <li><span class="glyphicon glyphicon-search"</span><a href="http://localhost:5000/api/profile/all">Find</a></li>
+      <li><span class="glyphicon glyphicon-share-alt"</span><a href="http://localhost:5000/api/posts/feed">Feed</a></li>
+      <!-- Add login and logout logic for signup, login and logout -->
+      {{#if login}}
+        <li><a id="access" href="http://localhost:5000/api/users/logout">Logout</a>
+        {{else}}
+        <li><a id="access" href="http://localhost:5000/login">Login</a>
+          <a id="access" href="http://localhost:5000/register">Sign Up</a></li>
+        {{/if}}
+    </ul>
+  </nav>
+  </div>
+  {{#if groups}}
+  {{#each groups}}
+  <div class="groups">
+    <h1><strong>{{this.name}}</strong></h1>
+    <h4>{{this.status}}</h4>
+    {{#each this.users}}
+    <h2>Members: <h3>{{this.name}}</h3></h2>
+    {{/each}}
+    <form class="group" action="/api/groups/group_id/{{this._id}}" method="get">
+      <button id="url" type="submit" class="btn btn-info" value="{{this._id}}" name="group_id">Go to Group</button>
+    </form>
+  </div>
+  {{/each}}
+  {{else}}
+  <div class="NoGroup">
+  <h1>You don't have any groups yet...</h1>
+  <form class="create" action="/api/groups/form" method="get">
+    <button type="submit" class="btn btn-success" name="createGroup">Create a Group</button>
+  </form>
+</div>
+  {{/if}}
+
+<style media="screen">
+.create {
+  padding-top: 50px;
+}
+.NoGroup {
+  padding-top: 50px;
+  width: 700px;
+  margin-left: 200px;
+}
+.group {
+  margin-top: 150px;
+  width: 50px;
+  margin-left: 305px;
+}
+#btn {
+  margin-top: 150px;
+}
+.groups {
+  text-align: center;
+  width: 700px;
+  height: 400px;
+  padding-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.2);
+}
+.nav {
+background-color: #202060;
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+margin: 0 200px 0 200px;
+}
+nav ul {
+list-style-type: none;
+}
+nav ul li {
+float: left;
+padding: 10px 40px 20px 0;
+margin-left: 10px;
+font-size: 30px;
+color: white;
+}
+nav ul li a {
+color: white;
+padding-left: 15px;
+font-family: arial;
+}
+nav ul span {
+padding-left: 5px;
+}
+#access {
+margin-left: 120px;
+padding-right: 0;
+padding-left: 0;
+font-size: 20px;
+float: left;
+margin-top: 10px;
+}
+footer {
+margin-top: 200px;
+text-align: center;
+}
+
+</style>

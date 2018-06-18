@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
 // Creating User Schema
 
 const UserSchema = new Schema({
@@ -16,6 +15,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  groups: [{ type: Schema.Types.Mixed, ref: "groups" }],
   date: {
     type: Date,
     default: Date.now
